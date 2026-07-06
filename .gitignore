@@ -17,3 +17,4 @@ storage/tmp/*
 backups/
 storage/site-assets/*
 !storage/site-assets/.gitkeep
+.repo/
