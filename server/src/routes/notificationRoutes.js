@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { authenticate } from '../middleware/auth.js';
+import { deleteNotification, getPreferences, listNotifications, markAllRead, markRead, unreadCount, updatePreferences } from '../controllers/notificationController.js';
+const router = Router();
+router.use(authenticate);
+router.get('/', listNotifications);
+router.get('/unread-count', unreadCount);
+router.post('/mark-all-read', markAllRead);
+router.patch('/:id/read', markRead);
+router.delete('/:id', deleteNotification);
+router.get('/preferences', getPreferences);
+router.patch('/preferences', updatePreferences);
+export default router;

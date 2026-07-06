@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { authenticate } from '../middleware/auth.js';
+import { listPlans, mySubscription, checkout, cancel } from '../controllers/subscriptionController.js';
+const router = Router();
+router.get('/plans', listPlans);
+router.use(authenticate);
+router.get('/me', mySubscription);
+router.post('/checkout', checkout);
+router.post('/:id/cancel', cancel);
+export default router;

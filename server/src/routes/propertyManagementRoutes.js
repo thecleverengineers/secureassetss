@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import { authenticate } from '../middleware/auth.js';
+import { getPropertyTree, getLandlordOverview, submitTenantKyc, reviewTenantKyc, createRentalApplication, decideApplication, createTenancyFromApplication, calculateUtility, exportProperty } from '../controllers/propertyManagementController.js';
+const router = Router();
+router.use(authenticate);
+router.get('/landlord-overview', getLandlordOverview);
+router.get('/properties/:propertyId/tree', getPropertyTree);
+router.get('/properties/:propertyId/export', exportProperty);
+router.post('/kyc/submit', submitTenantKyc);
+router.post('/kyc/:id/review', reviewTenantKyc);
+router.post('/applications', createRentalApplication);
+router.post('/applications/:id/decision', decideApplication);
+router.post('/applications/:id/create-tenancy', createTenancyFromApplication);
+router.post('/utility/calculate', calculateUtility);
+export default router;
