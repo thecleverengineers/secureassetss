@@ -36,6 +36,12 @@ export const uploadSiteAsset = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, data: uploaded });
 });
 
+export const uploadUserImage = asyncHandler(async (req, res) => {
+  const uploaded = await persistImage(req, 'uploads');
+  await AuditLog.create({ user: req.user._id, role: req.user.role, action: 'upload', module: 'user-assets', updatedValue: uploaded, ip: req.ip, device: req.get('user-agent') });
+  res.status(201).json({ success: true, data: uploaded });
+});
+
 export const uploadProfileAvatar = asyncHandler(async (req, res) => {
   const previousAvatar = req.user.avatar || null;
   const uploaded = await persistImage(req, 'avatars');
