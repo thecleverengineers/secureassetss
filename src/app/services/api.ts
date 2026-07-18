@@ -372,6 +372,11 @@ export async function uploadSiteAsset(file: File) {
   return request<ApiResponse<{ url: string; filename: string; mimeType: string; size: number }>>('/site/admin-assets', { method: 'POST', body: form });
 }
 
+export async function uploadUserImage(file: File) {
+  const form = new FormData(); form.append('file', file);
+  return request<ApiResponse<{ url: string; filename: string; mimeType: string; size: number }>>('/site/user-assets', { method: 'POST', body: form });
+}
+
 export async function getAppConfiguration() {
   return request<ApiResponse<{ modules: Record<string, any>[]; role: string; mode: string }>>('/site/app-config');
 }
