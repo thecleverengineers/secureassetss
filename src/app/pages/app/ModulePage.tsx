@@ -15,6 +15,7 @@ import DocumentVaultPage from './DocumentVaultPage';
 import DriveAdministrationPage from './DriveAdministrationPage';
 import SiteAdministrationPage from './SiteAdministrationPage';
 import PropertyManagementPage from './PropertyManagementPage';
+import TenantPropertiesPage from './TenantPropertiesPage';
 import TenantKycPage from './TenantKycPage';
 import SearchPage from './SearchPage';
 import MessagingPage from './MessagingPage';
@@ -39,6 +40,9 @@ export default function ModulePage() {
   if ((module === 'site-admin' || module === 'settings') && user?.role === 'admin') return <SiteAdministrationPage />;
   if (module === 'platform-modules' && user?.role === 'admin') return <NavigationManagementPage />;
   if (module === 'property-management' && (user?.role === 'admin' || user?.role === 'manager' || user?.activeMode === 'landlord')) return <PropertyManagementPage />;
+  if (module === 'my-properties' && ['tenant', 'user'].includes(user?.role || '')) return <TenantPropertiesPage variant="active" />;
+  if (module === 'pending-properties' && ['tenant', 'user'].includes(user?.role || '')) return <TenantPropertiesPage variant="pending" />;
+  if (module === 'rejected-properties' && ['tenant', 'user'].includes(user?.role || '')) return <TenantPropertiesPage variant="rejected" />;
   if (module === 'tenant-kyc' && user?.role === 'tenant') return <TenantKycPage />;
   if (module === 'search') return <SearchPage />;
   if (module === 'messages') return <MessagingPage />;

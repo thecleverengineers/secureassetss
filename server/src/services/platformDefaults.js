@@ -1,5 +1,5 @@
 const SECTION_ORDER = Object.freeze({
-  main: 10, general: 10,
+  main: 10, general: 10, my_properties: 15,
   user_management: 20, property_management: 30, rent_management: 40, lease_management: 50, sales_management: 60,
   payments: 70, subscriptions: 80, surveyors: 90, landlords: 100, communications: 110, complaints: 120, tenant_management: 130,
   operations: 140, applications: 150, tenancy: 160, settings: 170,
@@ -148,12 +148,15 @@ const RAW_PLATFORM_MODULES = [
 
   appModule('dashboard', 'Tenant Dashboard', 'dashboard', tenant, regular, 10, { section: 'general', kind: 'system', mobilePrimary: true }),
   appModule('marketplace', 'Browse Properties', 'explore', tenant, regular, 20, { section: 'discovery', path: '/marketplace', kind: 'external', mobilePrimary: true }),
+  appModule('my-properties', 'My Properties', 'homework', tenant, regular, 10, { section: 'my_properties', kind: 'system', mobilePrimary: true }),
+  appModule('pending-properties', 'Pending Properties', 'pendingactions', tenant, regular, 20, { section: 'my_properties', kind: 'system' }),
+  appModule('rejected-properties', 'Rejected Properties', 'cancel', tenant, regular, 30, { section: 'my_properties', kind: 'system' }),
   appModule('tenant-profiles', 'Tenant Profile', 'person', tenant, regular, 30, { section: 'account' }),
   appModule('tenant-kyc', 'Tenant KYC', 'badge', tenant, regular, 40, { section: 'account', mobilePrimary: true }),
   appModule('occupants', 'Family & Occupants', 'people', tenant, regular, 50, { section: 'account' }),
   appModule('applications', 'My Applications', 'factcheck', tenant, regular, 60, { section: 'tenancy', mobilePrimary: true }),
   appModule('property-visits', 'Property Visits', 'calendarmonth', tenant, regular, 70, { section: 'tenancy' }),
-  appModule('my-property', 'My Property', 'homework', tenant, regular, 80, { section: 'tenancy', kind: 'system' }),
+  appModule('my-property', 'My Property', 'homework', tenant, regular, 80, { section: 'tenancy', kind: 'system', enabled: false }),
   appModule('tenancies', 'Tenancy Records', 'homework', tenant, regular, 90, { section: 'tenancy' }),
   appModule('rental-invoices', 'Rent & Bills', 'receiptlong', tenant, regular, 100, { section: 'finance' }),
   appModule('payments', 'Payments', 'payments', tenant, regular, 110, { section: 'finance' }),
