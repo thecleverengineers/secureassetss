@@ -11,7 +11,7 @@ const appModule = (key, label, icon, roles, modes, sortOrder, options = {}) => {
   const section = options.section || 'operations';
   return {
     key, label, icon, path: options.path || `/app/${key}`, scope: 'app', kind: options.kind || 'resource', section, sectionOrder: options.sectionOrder ?? sectionOrderFor(section),
-    roles, modes, enabled: true, mobilePrimary: Boolean(options.mobilePrimary), sortOrder, ...(options.description && { description: options.description }),
+    roles, modes, enabled: options.enabled ?? true, mobilePrimary: Boolean(options.mobilePrimary), sortOrder, ...(options.description && { description: options.description }),
   };
 };
 
@@ -84,8 +84,8 @@ const RAW_PLATFORM_MODULES = [
   appModule('users', 'Users', 'people', admin, regular, 20, { section: 'administration' }),
   appModule('properties', 'Properties', 'apartment', adminManager, regular, 30, { section: 'property' }),
   appModule('property-management', 'Property Structure', 'apartment', adminManager, regular, 40, { section: 'property', kind: 'system' }),
-  appModule('property-spaces', 'Buildings, Rooms & Beds', 'meetingroom', adminManager, regular, 50, { section: 'property' }),
-  appModule('property-media', 'Room-wise Galleries', 'collections', adminManager, regular, 60, { section: 'property' }),
+  appModule('property-spaces', 'Buildings, Rooms & Beds', 'meetingroom', adminManager, regular, 50, { section: 'property', enabled: false }),
+  appModule('property-media', 'Room-wise Galleries', 'collections', adminManager, regular, 60, { section: 'property', enabled: false }),
   appModule('tenants', 'Tenants', 'people', adminManager, regular, 70, { section: 'tenancy' }),
   appModule('tenant-profiles', 'Tenant Profiles', 'person', adminManager, regular, 80, { section: 'tenancy' }),
   appModule('tenant-kyc', 'Tenant KYC', 'badge', adminManager, regular, 90, { section: 'tenancy' }),
@@ -124,8 +124,8 @@ const RAW_PLATFORM_MODULES = [
   appModule('subscription', 'Landlord Subscription', 'workspacepremium', tenant, ['regular','landlord'], 20, { section: 'subscriptions', kind: 'system' }),
   appModule('property-management', 'Property Structure', 'apartment', tenant, landlord, 30, { section: 'property', kind: 'system', mobilePrimary: true }),
   appModule('properties', 'My Properties', 'apartment', tenant, landlord, 40, { section: 'property', mobilePrimary: true }),
-  appModule('property-spaces', 'Buildings, Rooms & Beds', 'meetingroom', tenant, landlord, 50, { section: 'property' }),
-  appModule('property-media', 'Room-wise Galleries', 'collections', tenant, landlord, 60, { section: 'property' }),
+  appModule('property-spaces', 'Buildings, Rooms & Beds', 'meetingroom', tenant, landlord, 50, { section: 'property', enabled: false }),
+  appModule('property-media', 'Room-wise Galleries', 'collections', tenant, landlord, 60, { section: 'property', enabled: false }),
   appModule('applications', 'Tenant Applications', 'factcheck', tenant, landlord, 70, { section: 'tenancy' }),
   appModule('tenant-interviews', 'Tenant Interviews', 'calendarmonth', tenant, landlord, 80, { section: 'tenancy' }),
   appModule('property-visits', 'Property Site Visits', 'calendarmonth', tenant, landlord, 90, { section: 'tenancy' }),
