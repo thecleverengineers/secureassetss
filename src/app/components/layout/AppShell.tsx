@@ -14,6 +14,7 @@ import {
   AccountBalanceRounded, HomeWorkRounded, WorkspacePremiumRounded, EngineeringRounded, StorefrontRounded, RequestQuoteRounded,
   CalendarMonthRounded, StraightenRounded, AnalyticsRounded, GroupWorkRounded, BusinessCenterRounded, VerifiedUserRounded, SwapHorizRounded,
   WebRounded, CollectionsRounded, BadgeRounded, ReceiptLongRounded, ElectricMeterRounded, CampaignRounded,
+  PendingActionsRounded, CancelRounded,
 } from '@mui/icons-material';
 import { LogoMark } from '../premium/LogoMark';
 import { useAuth } from '../../context/AuthContext';
@@ -71,6 +72,9 @@ const items: Record<string, MenuDef> = {
   profile: { key: 'profile', label: 'Profile', icon: PersonRounded },
   marketplace: { key: 'marketplace', label: 'Browse Properties', icon: ExploreRounded, path: '/marketplace' },
   'my-property': { key: 'my-property', label: 'My Property', icon: HomeWorkRounded },
+  'my-properties': { key: 'my-properties', label: 'My Properties', icon: HomeWorkRounded },
+  'pending-properties': { key: 'pending-properties', label: 'Pending Properties', icon: PendingActionsRounded },
+  'rejected-properties': { key: 'rejected-properties', label: 'Rejected Properties', icon: CancelRounded },
   facilities: { key: 'facilities', label: 'Facilities', icon: AccountBalanceRounded },
   'facility-bookings': { key: 'facility-bookings', label: 'Facility Bookings', icon: CalendarMonthRounded },
   'surveyor-plans': { key: 'surveyor-plans', label: 'Surveyor Plans', icon: WorkspacePremiumRounded },
@@ -109,13 +113,14 @@ const iconByName: Record<string, any> = {
   groupwork: GroupWorkRounded, businesscenter: BusinessCenterRounded, verifieduser: VerifiedUserRounded,
   web: WebRounded, collections: CollectionsRounded, badge: BadgeRounded, receiptlong: ReceiptLongRounded,
   electricmeter: ElectricMeterRounded, campaign: CampaignRounded,
+  pendingactions: PendingActionsRounded, cancel: CancelRounded,
 };
 function normalizeIconName(value = '') { return value.toLowerCase().replace(/[^a-z0-9]/g, ''); }
 
 const roleMenus: Record<UserRole, string[]> = {
   admin: ['dashboard', 'site-admin', 'site-enquiries', 'users', 'properties', 'property-spaces', 'property-media', 'tenant-profiles', 'tenant-kyc', 'occupants', 'tenant-interviews', 'property-visits', 'tenancies', 'rental-invoices', 'utility-readings', 'reminder-rules', 'property-promotions', 'leases', 'surveys', 'applications', 'payments', 'complaints', 'approvals', 'surveyor-plans', 'surveyor-verifications', 'surveyor-profiles', 'survey-services', 'survey-jobs', 'survey-quotations', 'survey-projects', 'survey-reports', 'survey-disputes', 'survey-promotions', 'facilities', 'facility-bookings', 'documents', 'drive-admin', 'notifications', 'messages', 'reports', 'audit-logs', 'settings'],
   manager: ['dashboard', 'properties', 'property-spaces', 'property-media', 'tenant-profiles', 'tenant-kyc', 'occupants', 'applications', 'tenant-interviews', 'property-visits', 'tenancies', 'rental-invoices', 'utility-readings', 'leases', 'surveys', 'payments', 'complaints', 'approvals', 'attendance', 'facilities', 'facility-bookings', 'documents', 'messages', 'notifications', 'reports'],
-  tenant: ['dashboard', 'marketplace', 'tenant-profiles', 'tenant-kyc', 'occupants', 'applications', 'property-visits', 'tenancies', 'rental-invoices', 'subscription', 'surveyor-subscription', 'my-property', 'leases', 'payments', 'complaints', 'documents', 'facilities', 'facility-bookings', 'messages', 'notifications', 'profile'],
+  tenant: ['dashboard', 'marketplace', 'my-properties', 'pending-properties', 'rejected-properties', 'tenant-profiles', 'tenant-kyc', 'occupants', 'applications', 'property-visits', 'tenancies', 'rental-invoices', 'subscription', 'surveyor-subscription', 'leases', 'payments', 'complaints', 'documents', 'facilities', 'facility-bookings', 'messages', 'notifications', 'profile'],
   user: ['dashboard', 'marketplace', 'applications', 'payments', 'complaints', 'facilities', 'facility-bookings', 'documents', 'messages', 'notifications', 'profile'],
   surveyor: ['surveyor-dashboard', 'surveys', 'attendance', 'facilities', 'facility-bookings', 'documents', 'messages', 'notifications', 'profile'],
 };
